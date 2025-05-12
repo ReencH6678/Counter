@@ -6,11 +6,6 @@ public class Mover : MonoBehaviour
 
     private void Update()
     {
-        Move();
-    }
-
-    private void Move()
-    {
         transform.Translate(_moveSpeed * Time.deltaTime * Vector3.forward);
     }
 }
