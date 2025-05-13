@@ -18,6 +18,8 @@ public class CubeCreator : MonoBehaviour
 
     private void CreateCube()
     {
-       
+        Cube cube = new Cube();
+        cube = _cube;
+      // Instantiate();
     }
 }
