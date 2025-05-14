@@ -29,17 +29,18 @@ public class Counter : MonoBehaviour
             else
             {
                 StopCoroutine(_increaseValueCoroutine);
+                _increaseValueCoroutine = null;
             }
         }
     }
 
     private IEnumerator IncreaseValue()
     {
-        var wait = new WaitForSecondsRealtime(_deley);
+        var wait = new WaitForSeconds(_deley);
 
         while (enabled)
         {
-            ValueChanged?.Invoke(_currentCount++);
+            ValueChanged?.Invoke(++_currentCount);
 
             yield return wait;
         }
