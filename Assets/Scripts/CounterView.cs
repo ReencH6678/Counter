@@ -9,12 +9,12 @@ public class CounterView : MonoBehaviour
 
     private void OnEnable()
     {
-        _counter.VelueChenged += DisplayCountup;
+        _counter.ValueChanged += DisplayCountup;
     }
 
     private void OnDisable()
     {
-        _counter.VelueChenged -= DisplayCountup;
+        _counter.ValueChanged -= DisplayCountup;
     }
 
     private void DisplayCountup(float count)
