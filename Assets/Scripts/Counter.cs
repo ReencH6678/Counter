@@ -12,6 +12,8 @@ public class Counter : MonoBehaviour
     private float _currentCount;
     private bool _isOn = false;
 
+    private Coroutine _countupCoroutine;
+
     private void Start()
     {
         _currentCount = _startCount;
@@ -25,11 +27,16 @@ public class Counter : MonoBehaviour
 
             if (_isOn)
             {
-                StartCoroutine(Countup());
+                if (_countupCoroutine == null)
+                    _countupCoroutine = StartCoroutine(Countup());
             }
             else
             {
-                StopCoroutine(Countup());
+                if (_countupCoroutine != null)
+                {
+                    StopCoroutine(Countup());
+                    _countupCoroutine = null;
+                }
             }
 
         }
@@ -37,10 +44,10 @@ public class Counter : MonoBehaviour
 
     private IEnumerator Countup()
     {
+        var wait = new WaitForSecondsRealtime(_deley);
+
         while (_isOn)
         {
-            var wait = new WaitForSecondsRealtime(_deley);
-
             VelueChenged?.Invoke(_currentCount++);
 
             yield return wait;
